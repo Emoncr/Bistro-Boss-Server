@@ -1,9 +1,14 @@
 import express from "express";
 import authRouter from "./api/routes/auth.route.js";
 import mongoose from "mongoose";
+import cors from "cors";
 import "dotenv/config";
+import bodyParser from "body-parser";
 
+// ===== Initializing  app here =====//
 const app = express();
+app.use(cors());
+app.use(bodyParser.json());
 
 const port = process.env.PORT;
 
