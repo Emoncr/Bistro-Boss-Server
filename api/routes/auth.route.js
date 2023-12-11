@@ -1,10 +1,10 @@
 import express from "express";
-import { handleSingIn } from "../controllers/auth.controller.js";
+import { handleSignUp,handleSignIn } from "../controllers/auth.controller.js";
 
 const router = express.Router();
 
-router.post("/signUp", handleSingIn);
-router.post("/signIn", handleSingIn);
+router.post("/signUp", handleSignUp);
+router.post("/signIn", handleSignIn);
 
 
 

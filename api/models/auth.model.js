@@ -11,6 +11,12 @@ const userSchema = new mongoose.Schema(
       required: [true, "this feild is required"],
       unique: true,
       index: true,
+      validate: {
+        validator: function (value) {
+          return /^[\w-]+(\.[\w-]+)*@[\w-]+(\.[\w-]+)+$/.test(value);
+        },
+        message: "Please enter a valid email address",
+      },
     },
     password: {
       type: String,
@@ -26,5 +32,6 @@ const userSchema = new mongoose.Schema(
     timestamps: true,
   }
 );
+userSchema.index({ email: 1 }, { unique: true });
 
 export const User = mongoose.model("User", userSchema);
