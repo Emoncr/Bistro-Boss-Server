@@ -24,7 +24,7 @@ const connectDB = async () => {
 connectDB();
 
 //===== Routes Part
-app.use("/", authRouter);
+app.use("/api/", authRouter);
 
 //============== Handling Error Middleware =========//
 app.use((err, req, res, next) => {
