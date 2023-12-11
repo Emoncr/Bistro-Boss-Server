@@ -7,7 +7,7 @@ const app = express();
 
 const port = process.env.PORT;
 
-// ======= Connect to DB
+// ======= Connect to DB =======//
 const connectDB = async () => {
   try {
     await mongoose.connect(process.env.MONGO_URI);
@@ -17,9 +17,21 @@ const connectDB = async () => {
   }
 };
 connectDB();
-// Routes Part
 
+//===== Routes Part
 app.use("/", authRouter);
+
+//============== Handling Error Middleware =========//
+app.use((err, req, res, next) => {
+  const statusCodde = err.status || 500;
+  const errMessage = err.message || "Internal Server Error";
+
+  return res.status(statusCodde).json({
+    success: false,
+    statusCode: statusCodde,
+    message: errMessage,
+  });
+});
 
 app.listen(port, () => {
   console.log("app is listing in port 3000");
