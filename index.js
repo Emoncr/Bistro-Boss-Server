@@ -1,5 +1,6 @@
 import express from "express";
 import authRouter from "./api/routes/auth.route.js";
+import foodItemRouter from "./api/routes/foodItem.route.js";
 import mongoose from "mongoose";
 import cors from "cors";
 import "dotenv/config";
@@ -22,10 +23,11 @@ const connectDB = async () => {
   }
 };
 connectDB();
+// ======= Connect to DB =======//
 
 //===== Routes Part
 app.use("/api/", authRouter);
-
+app.use("/api/item/", foodItemRouter);
 //============== Handling Error Middleware =========//
 app.use((err, req, res, next) => {
   const statusCodde = err.status || 500;
